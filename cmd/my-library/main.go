@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github/SpaceBuckett/books-api/cmd/internal/config"
+	"github/SpaceBuckett/books-api/cmd/internal/http/handlers/post"
 	"log"
 	"log/slog"
 	"net/http"
@@ -23,9 +24,7 @@ func main() {
 	// TODO: SETUP ROUTER
 	router := http.NewServeMux()
 
-	router.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Shahzad's Dump!"))
-	})
+	router.HandleFunc("POST /api/posts", post.New())
 	// TODO: SETUP HTTP SERVER
 	server := http.Server{
 		Addr:    cfg.Addr,
